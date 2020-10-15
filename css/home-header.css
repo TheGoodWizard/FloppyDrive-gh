@@ -1,0 +1,96 @@
+.js-loading *,
+.js-loading *:before,
+.js-loading *:after {
+    animation-play-state: paused !important;
+}
+
+.header {
+    align-items: center;
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    overflow: hidden;
+    perspective: 100px;
+    position: relative;
+    text-align: center;
+    transform-style: preserve-3d;
+}
+
+.header:before {
+    animation: no-transform 2s .5s cubic-bezier(0, .5, 0, 1) forwards;
+    background: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0
+    ,.8)),
+            url("../images/new_parallax_img/new_para.jpg") no-repeat bottom;
+    background-size: cover;
+    content: "";
+    opacity: 0;
+    transform: translateY(-4rem);
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+}
+
+.header:after {
+    /* animation: rotate-up .5s .5s cubic-bezier(0, .5, 0, 1) forwards; */
+    background: #000000;
+    content: "";
+    height: 40rem;
+    left: -5%;
+    position: absolute;
+    right: -5%;
+    top: 90%;
+    transform-origin: 0 0;
+    z-index: 0;
+   
+}
+
+.animate-pop-in {
+    animation: no-transform .6s cubic-bezier(0, .9, .3, 1.2) forwards;
+    opacity: 0;
+    transform: translateY(-4rem) scale(.8);
+  }
+  
+  .ttlm-logo {
+    animation-delay: .6s;
+  }
+  
+.header-title {
+    animation-delay: .8s;
+}
+
+
+.header-title, .header-subtitle {
+      color: #ffffff;
+  }
+
+.header-subtitle {
+      margin-bottom: 5rem;
+      text-transform: uppercase;
+      animation-delay: 1s;
+  }
+
+.header-button {
+      transform: translateZ(.1px);
+      position: relative;
+      z-index: 10;
+      animation-delay: 1.1s;
+  }
+
+  /* Animations */
+
+
+@keyframes rotate-up {
+    100% {
+        transform: rotateZ(-4deg);
+    }
+}
+
+@keyframes no-transform {
+    100% {
+        opacity: 1;
+        transform: none;
+    }
+}

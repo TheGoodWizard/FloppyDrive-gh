@@ -1,0 +1,93 @@
+
+
+.container {
+ max-width: 100%;
+ margin: 0 auto;
+}
+
+section.section:last-child {
+  margin-bottom: 0;
+}
+
+section.section h2 {
+  margin-bottom: 40px;
+  font-family: 'ethnocentric', sans-serif;
+  font-style: normal;
+  font-weight: 100;
+  font-size: 30px;
+  color: #ffffff;
+}
+
+section.section p {
+  margin-bottom: 40px;
+  font-size: 1em;
+  font-weight: 500;
+  color: #ffffff;
+  font-family: 'Omnium', sans-serif;
+}
+
+section.section p:last-child {
+  margin-bottom: 0;
+}
+
+section.section.content {
+  max-width: 1080px;
+  margin: 0 auto;
+  float: none;
+}
+
+section.section.parallax {
+  height: 600px;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+section.section.parallax h1 {
+  color: rgba(255, 255, 255, 0.8);
+  font-family: 'ethnocentric', sans-serif;
+  font-size: 40px;
+  line-height: 600px;
+  font-weight: 400;
+  text-align: center;
+  text-transform: uppercase;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+section.section.parallax-1 {
+  background-image: url("../images/parallax_1.jpg");
+}
+
+section.section.parallax-2 {
+  background-image: url("../images/parallax_2.jpg");
+}
+
+section.section.parallax-3 {
+  background-image: url("../images/parallax_3.jpg");
+}
+
+@media all and (min-width: 600px) {
+  section.section h2 {
+    font-size: 42px;
+  }
+
+  section.section p {
+    font-size: 20px;
+    color: #ffffff;
+    font-family: 'Omnium', sans-serif;
+    font-weight: 500;
+    font-style: normal;
+}
+
+  section.section.parallax h1 {
+    font-size: 48px;
+  }
+}
+
+@media all and (min-width: 960px) {
+  section.section.parallax h1 {
+    font-size: 80px;
+  }
+}
+ 

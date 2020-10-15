@@ -1,0 +1,50 @@
+.js-loading *,
+.js-loading *:before,
+.js-loading *:after {
+    animation-play-state: paused !important;
+}
+
+.header {
+    align-items: center;
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    overflow: hidden;
+    perspective: 100px;
+    position: relative;
+    text-align: center;
+    transform-style: preserve-3d;
+}
+
+.header:before {
+    animation: no-transform 2s .5s cubic-bezier(0, .5, 0, 1) forwards;
+    background: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0
+    ,.8)),
+            url("../images/new_parallax_img/new_para3.jpg") no-repeat bottom;
+    background-size: cover;
+    content: "";
+    opacity: 0;
+    transform: translateY(-4rem);
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+}
+
+/* Animations */
+
+
+@keyframes rotate-up {
+    100% {
+        transform: rotateZ(-4deg);
+    }
+}
+
+@keyframes no-transform {
+    100% {
+        opacity: 1;
+        transform: none;
+    }
+}

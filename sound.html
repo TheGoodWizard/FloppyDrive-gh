@@ -1,0 +1,1335 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Our Sound</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="https://use.typekit.net/mbh8hin.css">
+    <link rel="stylesheet" href="https://use.typekit.net/mbh8hin.css">
+    <link rel="stylesheet" href="https://use.typekit.net/mbh8hin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="css/SM_sidebar.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/style_global.css">
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="css/normalize.css">
+
+
+    <script src="js/global.js"></script>
+    <script src="js/react-mdl.js"></script>
+    <script src="js/tone.js"></script>
+    <script src="https://kit.fontawesome.com/06c95213cb.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react.js" charset="utf-8"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react-dom.js" charset="utf-8"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.21.1/babel.min.js" charset="utf-8"></script>
+
+    <style>
+
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    :root {
+      background: black;
+    }
+
+    #app {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    #drum-machine {
+      display: grid;
+      grid: 70px 380px / 360px auto;
+      align-items: center;
+      background: linear-gradient(#303030, #202020, #303030);
+      width: 675px;
+      height: 625px;
+      border-radius: 5px;
+    }
+
+    #drum-machine header #about:before, #drum-machine header button:before, #drum-machine header #about:after, #drum-machine header button:after, #drum-machine #snare:before, #drum-machine #snare-2:before, #drum-machine #snare:after, #drum-machine #snare-2:after, #drum-machine #percussion:before, #drum-machine #percussion-2:before, #drum-machine #percussion:after, #drum-machine #percussion-2:after, #drum-machine #kick:before, #drum-machine #kick-2:before, #drum-machine #kick:after, #drum-machine #kick-2:after, #drum-machine #clap:before, #drum-machine #clap:after, #drum-machine #hard-clap:before, #drum-machine #hi-hat:before, #drum-machine #hard-clap:after, #drum-machine #hi-hat:after, #drum-machine #snare-clap:before, #drum-machine #snare-clap:after, #drum-machine #wawaam:before, #drum-machine #wawaam:after, #drum-machine #weehuam:before, #drum-machine #weehuam:after, #drum-machine #babadam:before, #drum-machine #babadam:after, #drum-machine #uawahuwah:before, #drum-machine #uawahuwah:after, #drum-machine #meeep:before, #drum-machine #meeep:after, #drum-machine #bidibap:before, #drum-machine #bidibap:after, #drum-machine #tschck:before, #drum-machine #tschck:after, #drum-machine header #display:before, #drum-machine nav #volume-inner-wrapper:before, #drum-machine nav #volume-inner-wrapper:after, #drum-machine nav label:before, #drum-machine nav label:after {
+      content: "";
+      position: absolute;
+    }
+
+    #drum-machine header #about:before, #drum-machine header button:before, #drum-machine header #about:after, #drum-machine header button:after, #drum-machine #snare:before, #drum-machine #snare-2:before, #drum-machine #snare:after, #drum-machine #snare-2:after, #drum-machine #percussion:before, #drum-machine #percussion-2:before, #drum-machine #percussion:after, #drum-machine #percussion-2:after, #drum-machine #kick:before, #drum-machine #kick-2:before, #drum-machine #kick:after, #drum-machine #kick-2:after, #drum-machine #clap:before, #drum-machine #clap:after, #drum-machine #hard-clap:before, #drum-machine #hi-hat:before, #drum-machine #hard-clap:after, #drum-machine #hi-hat:after, #drum-machine #snare-clap:before, #drum-machine #snare-clap:after, #drum-machine #wawaam:before, #drum-machine #wawaam:after, #drum-machine #weehuam:before, #drum-machine #weehuam:after, #drum-machine #babadam:before, #drum-machine #babadam:after, #drum-machine #uawahuwah:before, #drum-machine #uawahuwah:after, #drum-machine #meeep:before, #drum-machine #meeep:after, #drum-machine #bidibap:before, #drum-machine #bidibap:after, #drum-machine #tschck:before, #drum-machine #tschck:after {
+      width: 10px;
+      height: 10px;
+      transition: all 1ms ease;
+      z-index: -1;
+    }
+
+    #drum-machine header {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      grid-column-start: 1;
+      grid-column-end: 3;
+      height: 50px;
+      width: 100%;
+      z-index: 1;
+    }
+
+    #drum-machine header #display {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      height: 90%;
+      min-width: 50%;
+      font-family: 'Ethnocentric', sans-serif;
+      font-size: 1.5em;
+      color: #3cc7c7;
+      text-align: center;
+      text-shadow: 10px 10px 4px #00000050;
+      border: solid 3px darkcyan;
+    }
+
+    #drum-machine header #display:before {
+      width: 100%;
+      height: 100%;
+      border: solid 1px #000000;
+      transform: translate(10px, 10px);
+      filter: blur(1.5px);
+      z-index: -1;
+    }
+
+    #drum-machine header #about, #drum-machine header button {
+      position: relative;
+      width: 32px;
+      height: 32px;
+      margin: 0 0 10px 0;
+    }
+
+    #drum-machine header #about, #drum-machine header button {
+      background: radial-gradient(#23aeae, #0a9595, darkcyan);
+      box-shadow: inset 0px 0px 25px #32bdbd, 7px 7px darkcyan, 16px 16px 20px rgba(0, 0, 0, 0.1);
+      font-family: 'Ethnocentric', sans-serif;
+      font-weight: lighter;
+      color: #077;
+      text-shadow: 1px 1px 2px #006d6d;
+      border: none;
+      outline: none;
+      transition: all 1ms linear;
+    }
+
+    #drum-machine header #about:before, #drum-machine header button:before {
+      background: darkcyan;
+      bottom: 0px;
+      left: 0px;
+      transform-origin: bottom left;
+      transform: rotate(45deg);
+    }
+
+    #drum-machine header #about:after, #drum-machine header button:after {
+      background: darkcyan;
+      top: 0px;
+      right: 0px;
+      transform-origin: top right;
+      transform: rotate(-45deg);
+    }
+
+    #drum-machine header #about:hover, #drum-machine header button:hover {
+      background: radial-gradient(#28b3b3, #0f9a9a, darkcyan);
+    }
+
+    #drum-machine header #about:active, #drum-machine header button:active {
+      transform: translate(10px, 10px);
+      box-shadow: inset 0px 0px 25px #32bdbd, 0px 0px 25px darkcyan;
+      filter: brightness(110%);
+    }
+    #drum-machine header #about:active:before, #drum-machine header button:active:before, #drum-machine header #about:active:after, #drum-machine header button:active:after {
+      width: 0px;
+      height: 0px;
+    }
+
+    #drum-machine header #about {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #drum-machine header button {
+      text-align: center;
+    }
+
+    #drum-machine header i {
+      display: block;
+      font-size: 1em;
+    }
+
+    #drum-machine nav {
+      position: relative;
+      height: 360px;
+      max-width: 90px;
+      width: auto;
+      grid-row-start: 2;
+      grid-row-end: 3;
+      grid-column-start: 2;
+      margin-left: 170px;
+
+
+    }
+
+    #drum-machine nav #volume-inner-wrapper:before, #drum-machine nav #volume-inner-wrapper:after, #drum-machine nav label:before, #drum-machine nav label:after {
+      width: 6px;
+      height: 6px;
+      background: darkcyan;
+      z-index: -1;
+    }
+
+    #drum-machine nav #volume-display {
+      font-family: "Codystar", sans-serif;
+      line-height: 1em;
+      font-size: 1.3em;
+      font-weight: lighter;
+      color: cyan;
+      padding: 10px;
+      text-align: center;
+      text-shadow: 5px 5px 4px #00000050, 1.5px 1.5px darkcyan;
+    }
+
+    #drum-machine nav #volume-outer-wrapper {
+      position: relative;
+      top: 20px;
+      left: 0px;
+      transform: rotate(90deg);
+    }
+
+    #drum-machine nav #volume-inner-wrapper {
+      position: absolute;
+      display: flex;
+      justify-content: center;
+      position: relative;
+      top: 0px;
+      left: 0px;
+      width: 200px;
+      height: 50px;
+      box-shadow: 5px -5px darkcyan;
+    }
+
+    #drum-machine nav #volume-inner-wrapper:before {
+      top: 0px;
+      left: 0px;
+      transform-origin: top left;
+      transform: rotate(-42deg);
+    }
+
+    #drum-machine nav #volume-inner-wrapper:after {
+      bottom: 0px;
+      right: 0px;
+      transform-origin: bottom right;
+      transform: rotate(42deg);
+    }
+
+    #drum-machine nav input[type="range"] {
+      appearance: none;
+      position: absolute;
+      background: #059090;
+      direction: rtl;
+      height: 100%;
+      width: 100%;
+      margin: 0px;
+      outline: none;
+      box-shadow: 8px -8px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    #drum-machine nav input::-webkit-slider-thumb {
+      appearance: none;
+      background: linear-gradient(to right, #5ae5e5, #55e0e0, #55e0e0, #5ae5e5);
+      width: 35px;
+      height: 50px;
+      border-radius: 2px;
+    }
+
+    #drum-machine nav label {
+      position: absolute;
+      background: #059090;
+      bottom: 16px;
+      left: 50%;
+      transform: translatex(-50%);
+      margin: auto;
+      height: 80px;
+      width: 50px;
+      box-shadow: 5px 5px darkcyan;
+    }
+    #drum-machine nav label:before {
+      top: 0px;
+      right: 0px;
+      transform-origin: top right;
+      transform: rotate(-45deg);
+    }
+    #drum-machine nav label:after {
+      bottom: 0px;
+      left: 0px;
+      transform-origin: bottom left;
+      transform: rotate(45deg);
+    }
+    #drum-machine nav label input {
+      opacity: 0;
+      height: 0px;
+      width: 0px;
+    }
+    #drum-machine nav label input:checked + span {
+      transform: translateY(100%);
+    }
+    #drum-machine nav label span {
+      display: block;
+      position: absolute;
+      top: 0px;
+      width: 100%;
+      height: 50%;
+      background: linear-gradient(to right, #5ae5e5, #55e0e0, #55e0e0, #5ae5e5);
+      border-radius: 2px;
+      transition: transform 100ms cubic-bezier(0.1, 0.4, 0.5, 0.9);
+    }
+    #drum-machine main {
+      display: grid;
+      grid: 1fr 1fr 1fr 1fr / 1fr 1fr 1fr 1fr;
+      grid-row-gap: 15px;
+      grid-column-gap: 15px;
+      height: 360px;
+      width: 360px;
+      margin: 10px;
+      z-index: 1;
+    }
+    #drum-machine .drum-pad {
+      position: relative;
+      width: 100px;
+      height: 100px;
+    }
+    #drum-machine #snare, #drum-machine #snare-2 {
+      background: radial-gradient(#4dbeff, #34a5ff, #2a9bff);
+      box-shadow: inset 0px 0px 25px #5ccdff, 7px 7px #2a9bff, 16px 16px 20px rgba(0, 0, 0, 0.1);
+      font-family: 'Ethnocentric', sans-serif;
+      font-weight: lighter;
+      color: #1687eb;
+      text-shadow: 1px 1px 2px #0c7de1;
+      border: none;
+      outline: none;
+      transition: all 1ms linear;
+    }
+    #drum-machine #snare:before, #drum-machine #snare-2:before {
+      background: #2a9bff;
+      bottom: 0px;
+      left: 0px;
+      transform-origin: bottom left;
+      transform: rotate(45deg);
+    }
+    #drum-machine #snare:after, #drum-machine #snare-2:after {
+      background: #2a9bff;
+      top: 0px;
+      right: 0px;
+      transform-origin: top right;
+      transform: rotate(-45deg);
+    }
+    #drum-machine #snare:hover, #drum-machine #snare-2:hover {
+      background: radial-gradient(#52c3ff, #39aaff, #2a9bff);
+    }
+    #drum-machine #snare:active, #drum-machine #snare-2:active {
+      transform: translate(10px, 10px);
+      box-shadow: inset 0px 0px 25px #5ccdff, 0px 0px 25px #2a9bff;
+      filter: brightness(110%);
+    }
+    #drum-machine #snare:active:active:before, #drum-machine #snare-2:active:active:before, #drum-machine #snare:active:active:after, #drum-machine #snare-2:active:active:after {
+      width: 0px;
+      height: 0px;
+    }
+    #drum-machine #percussion, #drum-machine #percussion-2 {
+      background: radial-gradient(#fffa23, #ffe10a, gold);
+      box-shadow: inset 0px 0px 25px #ffff32, 7px 7px gold, 16px 16px 20px rgba(0, 0, 0, 0.1);
+      font-family: 'Ethnocentric', sans-serif;
+      font-weight: lighter;
+      color: #ebc300;
+      text-shadow: 1px 1px 2px #e1b900;
+      border: none;
+      outline: none;
+      transition: all 1ms linear;
+    }
+    #drum-machine #percussion:before, #drum-machine #percussion-2:before {
+      background: gold;
+      bottom: 0px;
+      left: 0px;
+      transform-origin: bottom left;
+      transform: rotate(45deg);
+    }
+    #drum-machine #percussion:after, #drum-machine #percussion-2:after {
+      background: gold;
+      top: 0px;
+      right: 0px;
+      transform-origin: top right;
+      transform: rotate(-45deg);
+    }
+    #drum-machine #percussion:hover, #drum-machine #percussion-2:hover {
+      background: radial-gradient(#ffff28, #ffe60f, gold);
+    }
+    #drum-machine #percussion:active, #drum-machine #percussion-2:active {
+      transform: translate(10px, 10px);
+      box-shadow: inset 0px 0px 25px #ffff32, 0px 0px 25px gold;
+      filter: brightness(110%);
+    }
+    #drum-machine #percussion:active:active:before, #drum-machine #percussion-2:active:active:before, #drum-machine #percussion:active:active:after, #drum-machine #percussion-2:active:active:after {
+      width: 0px;
+      height: 0px;
+    }
+    #drum-machine #kick, #drum-machine #kick-2 {
+      background: radial-gradient(#9fff9a, #86ef81, #7ce577);
+      box-shadow: inset 0px 0px 25px #aeffa9, 7px 7px #7ce577, 16px 16px 20px rgba(0, 0, 0, 0.1);
+      font-family: 'Ethnocentric', sans-serif;
+      font-weight: lighter;
+      color: #68d163;
+      text-shadow: 1px 1px 2px #5ec759;
+      border: none;
+      outline: none;
+      transition: all 1ms linear;
+    }
+    #drum-machine #kick:before, #drum-machine #kick-2:before {
+      background: #7ce577;
+      bottom: 0px;
+      left: 0px;
+      transform-origin: bottom left;
+      transform: rotate(45deg);
+    }
+    #drum-machine #kick:after, #drum-machine #kick-2:after {
+      background: #7ce577;
+      top: 0px;
+      right: 0px;
+      transform-origin: top right;
+      transform: rotate(-45deg);
+    }
+    #drum-machine #kick:hover, #drum-machine #kick-2:hover {
+      background: radial-gradient(#a4ff9f, #8bf486, #7ce577);
+    }
+    #drum-machine #kick:active, #drum-machine #kick-2:active {
+      transform: translate(10px, 10px);
+      box-shadow: inset 0px 0px 25px #aeffa9, 0px 0px 25px #7ce577;
+      filter: brightness(110%);
+    }
+    #drum-machine #kick:active:active:before, #drum-machine #kick-2:active:active:before, #drum-machine #kick:active:active:after, #drum-machine #kick-2:active:active:after {
+      width: 0px;
+      height: 0px;
+    }
+    #drum-machine #clap {
+      background: radial-gradient(#e3e3e3, #cacaca, silver);
+      box-shadow: inset 0px 0px 25px #f2f2f2, 7px 7px silver, 16px 16px 20px rgba(0, 0, 0, 0.1);
+      font-family: 'Ethnocentric', sans-serif;
+      font-weight: lighter;
+      color: #acacac;
+      text-shadow: 1px 1px 2px #a2a2a2;
+      border: none;
+      outline: none;
+      transition: all 1ms linear;
+    }
+    #drum-machine #clap:before {
+      background: silver;
+      bottom: 0px;
+      left: 0px;
+      transform-origin: bottom left;
+      transform: rotate(45deg);
+    }
+    #drum-machine #clap:after {
+      background: silver;
+      top: 0px;
+      right: 0px;
+      transform-origin: top right;
+      transform: rotate(-45deg);
+    }
+    #drum-machine #clap:hover {
+      background: radial-gradient(#e8e8e8, #cfcfcf, silver);
+    }
+    #drum-machine #clap:active {
+      transform: translate(10px, 10px);
+      box-shadow: inset 0px 0px 25px #f2f2f2, 0px 0px 25px silver;
+      filter: brightness(110%);
+    }
+    #drum-machine #clap:active:active:before, #drum-machine #clap:active:active:after {
+      width: 0px;
+      height: 0px;
+    }
+    #drum-machine #hard-clap, #drum-machine #hi-hat {
+      background: radial-gradient(#e88dff, #cf74ff, #C56AFC);
+      box-shadow: inset 0px 0px 25px #f79cff, 7px 7px #C56AFC, 16px 16px 20px rgba(0, 0, 0, 0.1);
+      font-family: 'Ethnocentric', sans-serif;
+      font-weight: lighter;
+      color: #b156e8;
+      text-shadow: 1px 1px 2px #a74cde;
+      border: none;
+      outline: none;
+      transition: all 1ms linear;
+    }
+    #drum-machine #hard-clap:before, #drum-machine #hi-hat:before {
+      background: #C56AFC;
+      bottom: 0px;
+      left: 0px;
+      transform-origin: bottom left;
+      transform: rotate(45deg);
+    }
+    #drum-machine #hard-clap:after, #drum-machine #hi-hat:after {
+      background: #C56AFC;
+      top: 0px;
+      right: 0px;
+      transform-origin: top right;
+      transform: rotate(-45deg);
+    }
+    #drum-machine #hard-clap:hover, #drum-machine #hi-hat:hover {
+      background: radial-gradient(#ed92ff, #d479ff, #C56AFC);
+    }
+    #drum-machine #hard-clap:active, #drum-machine #hi-hat:active {
+      transform: translate(10px, 10px);
+      box-shadow: inset 0px 0px 25px #f79cff, 0px 0px 25px #C56AFC;
+      filter: brightness(110%);
+    }
+    #drum-machine #hard-clap:active:active:before, #drum-machine #hi-hat:active:active:before, #drum-machine #hard-clap:active:active:after, #drum-machine #hi-hat:active:active:after {
+      width: 0px;
+      height: 0px;
+    }
+    #drum-machine #snare-clap {
+      background: radial-gradient(#ff7477, #ff5b5e, #FF5154);
+      box-shadow: inset 0px 0px 25px #ff8386, 7px 7px #FF5154, 16px 16px 20px rgba(0, 0, 0, 0.1);
+      font-family: 'Ethnocentric', sans-serif;
+      font-weight: lighter;
+      color: #eb3d40;
+      text-shadow: 1px 1px 2px #e13336;
+      border: none;
+      outline: none;
+      transition: all 1ms linear;
+    }
+    #drum-machine #snare-clap:before {
+      background: #FF5154;
+      bottom: 0px;
+      left: 0px;
+      transform-origin: bottom left;
+      transform: rotate(45deg);
+    }
+    #drum-machine #snare-clap:after {
+      background: #FF5154;
+      top: 0px;
+      right: 0px;
+      transform-origin: top right;
+      transform: rotate(-45deg);
+    }
+    #drum-machine #snare-clap:hover {
+      background: radial-gradient(#ff797c, #ff6063, #FF5154);
+    }
+    #drum-machine #snare-clap:active {
+      transform: translate(10px, 10px);
+      box-shadow: inset 0px 0px 25px #ff8386, 0px 0px 25px #FF5154;
+      filter: brightness(110%);
+    }
+    #drum-machine #snare-clap:active:active:before, #drum-machine #snare-clap:active:active:after {
+      width: 0px;
+      height: 0px;
+    }
+
+    #drum-machine #wawaam {
+      background: radial-gradient(#ff8e2a, #ff9c45, #ef8c35);
+      box-shadow: inset 0px 0px 25px #ffc795, 7px 7px #ef8c35, 16px 16px 20px rgba(0, 0, 0, 0.1);
+      font-family: 'Ethnocentric', sans-serif;
+      font-weight: lighter;
+      color: #bf6b1f;
+      text-shadow: 1px 1px 2px #9f591a;
+      border: none;
+      outline: none;
+      transition: all 1ms linear;
+    }
+
+    #drum-machine #wawaam:before {
+      background: #ef8c35;
+      bottom: 0px;
+      left: 0px;
+      transform-origin: bottom left;
+      transform: rotate(45deg);
+    }
+
+    #drum-machine #wawaam:after {
+      background: #ef8c35;
+      top: 0px;
+      right: 0px;
+      transform-origin: top right;
+      transform: rotate(-45deg);
+    }
+
+    #drum-machine #wawaam:hover {
+      background: radial-gradient(#ff9c45, #ffaa5f, #ef8c35);
+    }
+
+    #drum-machine #wawaam:active {
+      transform: translate(10px, 10px);
+      box-shadow: inset 0px 0px 25px #ffaa5f, 0px 0px 25px #ef8c35;
+      filter: brightness(110%);
+    }
+
+    #drum-machine #wawaam:active:active:before, #drum-machine #wawaam:active:active:after {
+      width: 0px;
+      height: 0px;
+    }
+
+    #drum-machine #weehuam {
+      background: radial-gradient(#4b0082, #622092, #521082);
+      box-shadow: inset 0px 0px 25px #7840a1, 7px 7px #521082, 16px 16px 20px rgba(0, 0, 0, 0.1);
+      font-family: 'Ethnocentric', sans-serif;
+      font-weight: lighter;
+      color: #380062;
+      text-shadow: 1px 1px 2px #2f0051;
+      border: none;
+      outline: none;
+      transition: all 1ms linear;
+    }
+
+    #drum-machine #weehuam:before {
+      background: #521082;
+      bottom: 0px;
+      left: 0px;
+      transform-origin: bottom left;
+      transform: rotate(45deg);
+    }
+
+    #drum-machine #weehuam:after {
+      background: #521082;
+      top: 0px;
+      right: 0px;
+      transform-origin: top right;
+      transform: rotate(-45deg);
+    }
+
+    #drum-machine #weehuam:hover {
+      background: radial-gradient(#622092, #622092, #521082);
+    }
+
+    #drum-machine #weehuam:active {
+      transform: translate(10px, 10px);
+      box-shadow: inset 0px 0px 25px #622092, 0px 0px 25px #521082;
+      filter: brightness(110%);
+    }
+
+    #drum-machine #weehuam:active:active:before, #drum-machine #weehuam:active:active:after {
+      width: 0px;
+      height: 0px;
+    }
+
+    #drum-machine #babadam {
+      background: radial-gradient(#cbccc9, #d2d2d0, #c2c2c0);
+      box-shadow: inset 0px 0px 25px #d8d9d7, 7px 7px #c2c2c0, 16px 16px 20px rgba(0, 0, 0, 0.1);
+      font-family: 'Ethnocentric', sans-serif;
+      font-weight: lighter;
+      color: #989997;
+      text-shadow: 1px 1px 2px #7f807e;
+      border: none;
+      outline: none;
+      transition: all 1ms linear;
+    }
+
+    #drum-machine #babadam:before {
+      background: #c2c2c0;
+      bottom: 0px;
+      left: 0px;
+      transform-origin: bottom left;
+      transform: rotate(45deg);
+    }
+
+    #drum-machine #babadam:after {
+      background: #c2c2c0;
+      top: 0px;
+      right: 0px;
+      transform-origin: top right;
+      transform: rotate(-45deg);
+    }
+
+    #drum-machine #babadam:hover {
+      background: radial-gradient(#d2d2d0, #d2d2d0, #c2c2c0);
+    }
+
+    #drum-machine #babadam:active {
+      transform: translate(10px, 10px);
+      box-shadow: inset 0px 0px 25px #d2d2d0, 0px 0px 25px #c2c2c0;
+      filter: brightness(110%);
+    }
+
+    #drum-machine #babadam:active:active:before, #drum-machine #babadam:active:active:after {
+      width: 0px;
+      height: 0px;
+    }
+
+    #drum-machine #uawahuwah {
+      background: radial-gradient(#fa05a1, #fb24ad, #eb149d);
+      box-shadow: inset 0px 0px 25px #fb44b9, 7px 7px #eb149d, 16px 16px 20px rgba(0, 0, 0, 0.1);
+      font-family: 'Ethnocentric', sans-serif;
+      font-weight: lighter;
+      color: #bb0479;
+      text-shadow: 1px 1px 2px #9c0365;
+      border: none;
+      outline: none;
+      transition: all 1ms linear;
+    }
+
+    #drum-machine #uawahuwah:before {
+      background: #eb149d;
+      bottom: 0px;
+      left: 0px;
+      transform-origin: bottom left;
+      transform: rotate(45deg);
+    }
+
+    #drum-machine #uawahuwah:after {
+      background: #eb149d;
+      top: 0px;
+      right: 0px;
+      transform-origin: top right;
+      transform: rotate(-45deg);
+    }
+
+    #drum-machine #uawahuwah:hover {
+      background: radial-gradient(#fb24ad, #fb24ad, #eb149d);
+    }
+
+    #drum-machine #uawahuwah:active {
+      transform: translate(10px, 10px);
+      box-shadow: inset 0px 0px 25px #fb24ad, 0px 0px 25px #eb149d;
+      filter: brightness(110%);
+    }
+
+    #drum-machine #uawahuwah:active:active:before, #drum-machine #uawahuwah:active:active:after {
+      width: 0px;
+      height: 0px;
+    }
+
+    #drum-machine #meeep {
+      background: radial-gradient(#26fa05, #41fb24, #31eb14);
+      box-shadow: inset 0px 0px 25px #5cfb44, 7px 7px #31eb14, 16px 16px 20px rgba(0, 0, 0, 0.1);
+      font-family: 'Ethnocentric', sans-serif;
+      font-weight: lighter;
+      color: #1dbb04;
+      text-shadow: 1px 1px 2px #189c03;
+      border: none;
+      outline: none;
+      transition: all 1ms linear;
+    }
+
+    #drum-machine #meeep:before {
+      background: #31eb14;
+      bottom: 0px;
+      left: 0px;
+      transform-origin: bottom left;
+      transform: rotate(45deg);
+    }
+
+    #drum-machine #meeep:after {
+      background: #31eb14;
+      top: 0px;
+      right: 0px;
+      transform-origin: top right;
+      transform: rotate(-45deg);
+    }
+
+    #drum-machine #meeep:hover {
+      background: radial-gradient(#41fb24, #41fb24, #31eb14);
+    }
+
+    #drum-machine #meeep:active {
+      transform: translate(10px, 10px);
+      box-shadow: inset 0px 0px 25px #41fb24, 0px 0px 25px #31eb14;
+      filter: brightness(110%);
+    }
+
+    #drum-machine #meeep:active:active:before, #drum-machine #meeep:active:active:after {
+      width: 0px;
+      height: 0px;
+    }
+
+    #drum-machine #bidibap {
+      background: radial-gradient(#d905fa, #de24fb, #ce14eb);
+      box-shadow: inset 0px 0px 25px #e344fb, 7px 7px #c324db, 16px 16px 20px rgba(0, 0, 0, 0.1);
+      font-family: 'Ethnocentric', sans-serif;
+      font-weight: lighter;
+      color: #a304bb;
+      text-shadow: 1px 1px 2px #88039c;
+      border: none;
+      outline: none;
+      transition: all 1ms linear;
+    }
+
+    #drum-machine #bidibap:before {
+      background: #ce14eb;
+      bottom: 0px;
+      left: 0px;
+      transform-origin: bottom left;
+      transform: rotate(45deg);
+    }
+
+    #drum-machine #bidibap:after {
+      background: #ce14eb;
+      top: 0px;
+      right: 0px;
+      transform-origin: top right;
+      transform: rotate(-45deg);
+    }
+
+    #drum-machine #bidibap:hover {
+      background: radial-gradient(#de24fb, #de24fb, #ce14eb);
+    }
+
+    #drum-machine #bidibap:active {
+      transform: translate(10px, 10px);
+      box-shadow: inset 0px 0px 25px #de24fb, 0px 0px 25px #ce14eb;
+      filter: brightness(110%);
+    }
+
+    #drum-machine #bidibap:active:active:before, #drum-machine #bidibap:active:active:after {
+      width: 0px;
+      height: 0px;
+    }
+
+    #drum-machine #tschck {
+      background: radial-gradient(#05fad9, #24fbde, #14ebce);
+      box-shadow: inset 0px 0px 25px #44fbe3, 7px 7px #14ebce, 16px 16px 20px rgba(0, 0, 0, 0.1);
+      font-family: 'Ethnocentric', sans-serif;
+      font-weight: lighter;
+      color: #04bba3;
+      text-shadow: 1px 1px 2px #039c88;
+      border: none;
+      outline: none;
+      transition: all 1ms linear;
+    }
+
+    #drum-machine #tschck:before {
+      background: #14ebce;
+      bottom: 0px;
+      left: 0px;
+      transform-origin: bottom left;
+      transform: rotate(45deg);
+    }
+
+    #drum-machine #tschck:after {
+      background: #14ebce;
+      top: 0px;
+      right: 0px;
+      transform-origin: top right;
+      transform: rotate(-45deg);
+    }
+
+    #drum-machine #tschck:hover {
+      background: radial-gradient(#24fbde, #24fbde, #14ebce);
+    }
+
+    #drum-machine #tschck:active {
+      transform: translate(10px, 10px);
+      box-shadow: inset 0px 0px 25px #24fbde, 0px 0px 25px #14ebce;
+      filter: brightness(110%);
+    }
+
+    #drum-machine #tschck:active:active:before, #drum-machine #tschck:active:active:after {
+      width: 0px;
+      height: 0px;
+    }
+
+
+    </style> <!-- End Drum-Pad styling -->
+
+
+    <!-- Start of Drum Rack Styling -->
+    <style>
+
+    .app {
+  font-family: 'Ethnocentric', sans-serif;
+  font-weight: lighter;
+  margin: 1em 0 2em 2em;
+  /* background: #dad5d5;
+  border-radius: 5px; */
+}
+
+.track th {
+  text-align: right;
+  width: 170px;
+}
+
+.track .vol {
+  width: 140px;
+}
+
+.track .mute {
+  width: 56px;
+}
+
+.beat {
+  background: #eee;
+  text-align: center;
+  line-height: 1em;
+  border-radius: 2px;
+}
+
+.beat.active {
+  background: pink;
+}
+
+.beat.current {
+  background: #f5f5eb;
+}
+
+.beat:nth-of-type(3),
+.beat:nth-of-type(7),
+.beat:nth-of-type(11),
+.beat:nth-of-type(15) {
+  border-left: 4px solid lightblue;
+}
+
+.beat > a {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+}
+
+.controls td {
+  padding-top: .5em;
+}
+
+.bpm input {
+  width: 60px;
+  border: 0;
+  font-size: 1em;
+}
+
+.material-icons.disabled-icon {
+  color: lightgrey;
+}
+
+h3 {
+  font-family: "Ethnocentric", sans-serif;
+  color: #05a1fa;
+}
+
+
+</style> <!-- End of Drum Rack Styling -->
+
+
+<!-- Start of Drum-pad Scripts -->
+<script type="text/babel">
+
+
+class DrumMachine extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      display: "Drum Machine",
+      volume: 50,
+      volumeCache: 0 //For mute button toggle
+    };
+  }
+
+  //Display sound
+  display(sound) {
+    this.setState({ display: sound.toUpperCase() });
+  }
+
+  //Play Sound
+  play(sound) {
+    let drumlist = new RegExp(/[qweasdzxcuiojkl;]+/gi);
+    if (drumlist.test(sound)) {
+      let audio = document.getElementById(sound);
+      audio.volume = this.state.volume * 0.01; //Set audio volume
+      audio.currentTime = 0; //Ensure Sound starts at 0s
+      audio.play();
+
+      let res = ReactDom.findDOMNode(
+          document.getElementById(sound)
+        ).parentNode.getAttribute("id");
+        console.log(res);
+        this.display(res);
+    }
+    console.log(sound);
+  }
+
+  //On Key press
+  handleKeyPress(event) {
+    this.play(event.key.toUpperCase());
+  }
+
+  //On Click
+  handleClick(event) {
+    this.display(event.target.getAttribute("id"));
+    this.play(event.target.innerText);
+  }
+  //On Volume Slider Change
+  handleVolume(event) {
+    this.setState({
+        volume: event.target.value,
+        volumePos: { right: parseInt(this.state.volume) + "%" }
+    });
+  }
+
+  //Mute Toggle
+  muteAudio() {
+    this.state.volumeCache
+    ? this.setState({ volume: this.state.volumeCache, volumeCache: 0 })
+    : this.setState({ volumeCache: this.state.volume, volume: 0 });
+  }
+
+  render() {
+    return (
+      <div id="drum-machine">
+        <header>
+          <div id="display">{this.state.display}</div>
+
+          <a
+            id=""
+            href=""
+            target="_blank"
+            title=""
+          >
+            <i class="fas fa-info" />
+          </a>
+
+          <button id="mute" onClick={this.muteAudio.bind(this)}>
+            <i class="fas fa-volume-mute" />
+          </button>
+          <button id="power">
+            <i class="fas fa-power-off" />
+          </button>
+        </header>
+        <nav>
+          <div id="volume-display">{this.state.volume + "%"}</div>
+          <div id="volume-outer-wrapper">
+            <div id="volume-inner-wrapper">
+              <input
+                type="range"
+                min="0"
+                max="100"
+                value={this.state.volume}
+                onInput={this.handleVolume.bind(this)}
+              />
+            </div>
+          </div>
+          <label>
+            <input id="bank" type="checkbox" />
+            <span />
+          </label>
+        </nav>
+
+        <main>
+          {/*SNARE*/}
+          <Button
+            id="snare"
+            keybind="Q"
+            clickHandler={this.handleClick.bind(this)}
+            handleKeyPress={this.handleKeyPress.bind(this)}
+            audio="https://res.cloudinary.com/castell/video/upload/v1548083222/Drum%20Machine/Snare_01.wav"
+            />
+            {/*KICK*/}
+            <Button
+            id="kick"
+            keybind="W"
+            clickHandler={this.handleClick.bind(this)}
+            handleKeyPress={this.handleKeyPress.bind(this)}
+            audio="https://res.cloudinary.com/castell/video/upload/v1547932271/Kick_01.wav"
+          />
+
+          {/*PERCUSSION*/}
+          <Button
+            id="percussion"
+            keybind="E"
+            clickHandler={this.handleClick.bind(this)}
+            handleKeyPress={this.handleKeyPress.bind(this)}
+            audio="https://res.cloudinary.com/castell/video/upload/v1548601721/Percussion.wav"
+          />
+
+          {/*WAWAAM*/}
+          <Button
+            id="wawaam"
+            keybind="U"
+            clickHandler={this.handleClick.bind(this)}
+            handleKeyPress={this.handleKeyPress.bind(this)}
+            audio="https://raw.githubusercontent.com/devski-dev/fcc-frontendLibs-projects/master/drumsounds/q-sound.mp3"
+          />
+
+          {/*CLAP*/}
+          <Button
+            id="clap"
+            keybind="A"
+            clickHandler={this.handleClick.bind(this)}
+            handleKeyPress={this.handleKeyPress.bind(this)}
+            audio="https://res.cloudinary.com/castell/video/upload/v1548192007/Clap.wav"
+          />
+
+          {/*HI-HAT*/}
+          <Button
+            id="hi-hat"
+            keybind="S"
+            clickHandler={this.handleClick.bind(this)}
+            handleKeyPress={this.handleKeyPress.bind(this)}
+            audio="https://res.cloudinary.com/castell/video/upload/v1548192007/Hi_Hat.wav"
+          />
+
+          {/*SNARE CLAP*/}
+          <Button
+            id="snare-clap"
+            keybind="D"
+            clickHandler={this.handleClick.bind(this)}
+            handleKeyPress={this.handleKeyPress.bind(this)}
+            audio="https://res.cloudinary.com/castell/video/upload/v1548192010/Snare_Clap_02.wav"
+          />
+
+          {/*KICK 2*/}
+          <Button
+            id="kick-2"
+            keybind="Z"
+            clickHandler={this.handleClick.bind(this)}
+            handleKeyPress={this.handleKeyPress.bind(this)}
+             audio="https://res.cloudinary.com/castell/video/upload/v1548213684/Kick_02.wav"
+            />
+
+            {/*PERCUSSION 2*/}
+            <Button
+              id="percussion-2"
+              keybind="X"
+              clickHandler={this.handleClick.bind(this)}
+              handleKeyPress={this.handleKeyPress.bind(this)}
+              audio="https://res.cloudinary.com/castell/video/upload/v1548214045/Percussion_02.wav"
+            />
+
+            {/*SNARE 2c*/}
+            <Button
+              id="snare-2"
+              keybind="C"
+              clickHandler={this.handleClick.bind(this)}
+              handleKeyPress={this.handleKeyPress.bind(this)}
+              audio="https://res.cloudinary.com/castell/video/upload/v1548214334/Snare_02.wav"
+            />
+
+            {/*WEEHUAM*/}
+            <Button
+              id="weehuam"
+              keybind="I"
+              clickHandler={this.handleClick.bind(this)}
+              handleKeyPress={this.handleKeyPress.bind(this)}
+              audio="https://raw.githubusercontent.com/devski-dev/fcc-frontendLibs-projects/master/drumsounds/w-sound.mp3"
+            />
+
+            {/*BABADAM*/}
+            <Button
+              id="babadam"
+              keybind="O"
+              clickHandler={this.handleClick.bind(this)}
+              handleKeyPress={this.handleKeyPress.bind(this)}
+              audio="https://raw.githubusercontent.com/devski-dev/fcc-frontendLibs-projects/master/drumsounds/e-sound.mp3"
+            />
+
+            {/*UAWAHUWAH*/}
+            <Button
+              id="uawahuwah"
+              keybind="J"
+              clickHandler={this.handleClick.bind(this)}
+              handleKeyPress={this.handleKeyPress.bind(this)}
+              audio="https://raw.githubusercontent.com/devski-dev/fcc-frontendLibs-projects/master/drumsounds/a-sound.mp3"
+            />
+
+            {/*MEEEP*/}
+            <Button
+              id="meeep"
+              keybind="K"
+              clickHandler={this.handleClick.bind(this)}
+              handleKeyPress={this.handleKeyPress.bind(this)}
+              audio="https://raw.githubusercontent.com/devski-dev/fcc-frontendLibs-projects/master/drumsounds/s-sound.mp3"
+            />
+
+            {/*BIDIBAP*/}
+            <Button
+              id="bidibap"
+              keybind="L"
+              clickHandler={this.handleClick.bind(this)}
+              handleKeyPress={this.handleKeyPress.bind(this)}
+              audio="https://raw.githubusercontent.com/devski-dev/fcc-frontendLibs-projects/master/drumsounds/d-sound.mp3"
+            />
+
+            {/*TSCHCK*/}
+            <Button
+              id="tschck"
+              keybind=";"
+              clickHandler={this.handleClick.bind(this)}
+              handleKeyPress={this.handleKeyPress.bind(this)}
+              audio="https://raw.githubusercontent.com/devski-dev/fcc-frontendLibs-projects/master/drumsounds/z-sound.mp3"
+            />
+          </main>
+        </div>
+    );
+  }
+}
+
+
+class Button extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    return (
+      <button
+      id={this.props.id}
+      class="drum-pad"
+      style={this.props.style}
+      onClick={this.props.clickHandler}
+      onKeyPress={this.props.handleKeyPress}
+    >
+      {this.props.keybind}
+      <audio id={this.props.keybind} class="clip" src={this.props.audio} />
+      </button>
+    );
+  }
+}
+ReactDOM.render(
+  <DrumMachine />,
+  document.getElementById('16drumpad')
+);
+
+</script> <!-- End of Drumpad Scripts -->
+
+
+
+  </head>
+
+  <header>
+
+
+    <div class="container-fluid">
+        <nav class="navbar navbar-dark bg-dark navbar-expand-sm fixed-top">
+           <div class="container">
+
+          <!-- <a href="home.html" class="navbar-brand"><img src="images/logo/TTL_Bulb_WhiteTransparent_web_ready.png" alt="Trip the Light Logo" style="width: 100px; height: 100px;"><a/> -->
+            <a href="home.html" class="navbar-brand"><img src="images/logo/TTL_Bulb_WhiteTransparent_nav_ready.png" alt="Trip the Light Logo" style="width: 50px; height: 50px;"></a>
+
+          <button class="navbar-toggler" type="button"
+            data-toggle="collapse" data-target="#myTogglerNav">
+            <div class="navbar-toggler-icon"></div>
+          </button>
+
+
+
+          <div class="collapse navbar-collapse" id="myTogglerNav">
+            <div class="navbar-nav">
+              <ul class="nav nav-pills flex-column flex-sm-row">
+                <li class="nav-item"><a class="nav-link" href="home.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                <li class="nav-item"><a class="nav-link" href="sound.html">Sound</a></li>
+                <li class="nav-item"><a class="nav-link" href="media.html">Media</a></li>
+                <li class="nav-item"><a class="nav-link" href="shop.html">Shop</a></li>
+                <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+              </ul>
+            </div> <!-- navbar -->
+
+          </div> <!-- collapse -->
+
+          </div>  <!-- container -->
+
+        </nav><!-- nav -->
+
+      </div>
+
+
+
+  </header>
+
+  <body>
+
+
+    <div>
+      <div class="icon-bar">
+        <a href="https://www.facebook.com/tripthelightsound/" class="facebook"><i class="fab fa-facebook"></i></a>
+        <a href="#" class="twitter"><i class="fab fa-twitter"></i></a>
+        <a href="https://soundcloud.com/trip-the-light" class="soundcloud"><i class="fab fa-soundcloud"></i></a>
+        <a href="https://www.instagram.com/tripthelightsound/" class="instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" class="spotify"><i class="fab fa-spotify"></i></a>
+      </div>
+    </div>
+
+
+<!-- Collapsable content for React Web Applications -->
+
+        <div calss="container pt-5 mx-5">
+          <div class="item item-1 pt-5 mx-5">
+
+
+
+              <h2 class="pt-5 pb-5 mx-5">Make Sounds with Us!</h2>
+
+              <button class="btn btn-primary mx-5" data-toggle="collapse"
+                data-target="#drumpad">
+                Drum Pad
+              </button>
+              <br>
+              <br>
+              <div id="drumpad">
+
+                <blockquote class="blockquote mx-5 bg-dark">Use drumpad to create some beats and then drag the samples to the drumrack.</blockquote>
+                <div class="container-fluid">
+                  <div id="16drumpad" class="mx-5"></div>
+                </div>
+
+              </div>
+              <br>
+
+              <button class="btn btn-danger mx-5" data-toggle="collapse"
+                data-target="#drumrack">
+                Drum Rack
+              </button>
+              <br>
+              <br>
+              <div id="drumrack">
+
+                  <blockquote class="blockquote mx-5 bg-dark">Use drumrack to modify your loaded beats and get even more creative!.</blockquote>
+                    <div id="drumRack2"></div>
+              </div>
+
+
+        </div>
+      </div>
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+
+
+  <div class="container-fluid fixed-bottom"><iframe id="sc-widget" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/776244625&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=false" width="100%" height="110px" scrolling="no" frameborder="no"></iframe></div>
+  <script src="https://w.soundcloud.com/player/api.js" type="text/javascript"></script>
+  <script type="text/javascript">
+  (function(){
+    var widgetIframe = document.getElementById('sc-widget'),
+        widget       = SC.Widget(widgetIframe);
+
+    widget.bind(SC.Widget.Events.READY, function() {
+      widget.bind(SC.Widget.Events.PLAY, function() {
+        // get information about currently playing sound
+        widget.getCurrentSound(function(currentSound) {
+          console.log('sound ' + currentSound.get('') + 'began to play');
+        });
+      });
+      // get current level of volume
+      widget.getVolume(function(volume) {
+        console.log('current volume value is ' + volume);
+      });
+      // set new volume level
+      widget.setVolume(50);
+      // get the value of the current position
+    });
+
+  }());
+</script>
+
+
+    <script src="js/jquery-3.4.1.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+
+
+
+
+  </body>
+</html>

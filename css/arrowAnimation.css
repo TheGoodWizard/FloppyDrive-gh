@@ -1,0 +1,62 @@
+/* body styling */
+body {
+  /* background: transparent; */
+  height:100vh;
+  text-align: center;
+  
+}
+
+/* set arrow positioning */
+.arrow {
+	width: 50px;
+	height: 100px;
+	position: absolute; /* don't forget set container to relative */
+	left: 46%;
+	bottom: 25%;
+  z-index:  90;
+}
+
+
+/* set arrow styles */
+.arrow path {
+	stroke: #e74c3c;
+	stroke-width: 2px;
+	fill: transparent;	
+	animation: down 3s infinite;
+}
+
+.header-down-arrow {
+	position: absolute;
+		bottom: -9vh;
+		left: 0;
+		right: 0;
+		text-align: center;
+		z-index:10;
+}
+
+.header-down-arrow-animation {
+	animation: no-transform 1s 1s ease-out forwards;
+	opacity: 0;
+	transform: translateY(4rem);
+}
+
+/* arrow keyframe animation */
+@keyframes down{
+0% { opacity:0 }
+25% { opacity:1 }
+75% { opacity:0 }
+100% { opacity:1 }
+}
+/* arrow animation delay */
+.arrow path.a1{	animation-delay:-1s; }
+.arrow path.a2{	animation-delay:-.5s; }
+.arrow path.a3{	animation-delay:0s; } 
+
+
+
+@keyframes no-transform {
+    100% {
+        opacity: 1;
+        transform: none;
+    }
+}

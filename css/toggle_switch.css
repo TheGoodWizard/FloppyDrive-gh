@@ -1,0 +1,211 @@
+body {
+  overflow: hidden;
+
+}
+
+
+.button {
+  /* box-sizing: border-box; */
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+  background: url("../images/trip_the_light_switch/the_switch_off.png") no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  width: 350px;
+  height: 750px;
+/* align-content:center; */
+  animation-name: button-glow;
+  animation-duration: 3.5s;
+  animation-timing-function: ease-in;
+  animation-iteration-count: 1;
+  animation-play-state: paused;
+}
+
+
+.selection-wrapper {
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  height: 750px;
+  width: 350px;
+  justify-content: center;
+  /* align-content: center; */
+  align-items: center;
+  align-self: center;
+  /* box-sizing: border-box;
+  padding-bottom: 50px;
+  border-radius: 50px; */
+
+}
+
+.selection-wrapper .button:hover  {
+  /* box-sizing: border-box;
+  padding: 50px; */
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  background: url("../images/trip_the_light_switch/the_switch_on.png") no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  animation-play-state: running;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+
+}
+
+  .selection-wrapper:hover .button {
+  opacity: 1;
+}
+
+.other-container {
+   position: absolute;
+   display: flex;
+   flex-direction: row;
+   justify-content: center;
+   align-items: center;
+   height: 100%;
+   width: 100%;
+   margin: auto;
+
+
+ }
+
+ .main-button {
+   /* box-sizing: border-box; */
+   position: absolute;
+   display: flex;
+   flex-direction: row;
+   justify-content: center;
+   align-items: center;
+   align-self: center;
+   height: 750px;
+   width: 350px;
+   background-image: url("../images/trip_the_light_switch/main_button.png");
+   background-repeat: no-repeat;
+   background-attachment: fixed;
+   background-position: center;
+   /* align-content: center; */
+   animation-name: main-button-clockwise;
+   animation-duration: 6s;
+   animation-iteration-count: infinite;
+   animation-timing-function: ease-in-out;
+   animation-direction: alternate;
+   animation-play-state: running;
+
+ }
+
+ .lamps-on {
+   /* box-sizing: border-box; */
+   position: absolute;
+   display: flex;
+   flex-direction: row;
+   justify-content: center;
+   align-items: center;
+   align-self: center;
+   height: 750px;
+   width: 350px;
+   background-image: url("../images/trip_the_light_switch/lamps_on.png");
+   background-repeat: no-repeat;
+   background-attachment: fixed;
+   background-position: center;
+   /* align-content: center; */
+   animation-name: lamps-on-counter-clockwise;
+   animation-duration: 3s;
+   animation-iteration-count: infinite;
+   animation-timing-function: ease-in-out;
+   animation-direction: reverse;
+   animation-play-state: running;
+ }
+
+#intro-button {
+  background-image:url("../images/trip_the_light_switch/the_switch_on.png");
+  background-repeat: no-repeat;
+  display: block;
+  height: 750px;
+  width: 350px;
+  overflow: hidden;
+  text-indent: 100%;
+  white-space: nowrap;
+  opacity: 0%;
+}
+
+#footer {
+  position: fixed;
+  left: 0px;
+  bottom: 0px;
+  height: 65px;
+  width: 100%;
+}
+
+
+
+#bg {
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+}
+
+#bg img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  min-width: 50%;
+  min-height: 50%;
+}
+
+#button-placeholder {
+  box-sizing: border-box;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  height: 750px;
+  width: 350px;
+  background-image: url("../images/trip_the_light_switch/the_switch_off.png");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  align-self: center;
+  align-content: center;
+  justify-content: center;
+}
+
+
+
+@keyframes button-glow {
+/* 0% {opacity: 100%;}
+  50% {opacity: 30%;}
+  100% {opacity: 100%}
+
+from {
+
+    opacity: 0%;
+}
+  to {
+
+    opacity: 100%;
+  } */
+}
+
+@keyframes main-button-clockwise {
+
+  100% {transform: rotate(360deg); }
+
+
+}
+
+@keyframes lamps-on-counter-clockwise {
+  0% {transform: rotate(0deg); }
+  100% {transform: rotate(360deg); }
+
+
+}

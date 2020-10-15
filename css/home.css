@@ -1,0 +1,159 @@
+ *{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+} 
+
+body {
+  background-color: #000000;
+}
+
+section {
+  background-color: #000000;
+  display: block;
+  margin-bottom: 40px;
+}
+
+
+section p {
+  color: #ffffff;
+}
+
+/*Header Parallax Element Style */
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.container {
+  /* max-width: 100%; */
+  width: auto;
+  margin: auto;
+  overflow: auto;
+  
+}
+
+
+
+.jumbotron {
+  background: no-repeat center center;
+  -webkit-background-size: 100% 100%;
+  -moz-background-size: 100% 100%;
+  -o-background-size: 100% 100%;
+  background-size: 100% 100%;
+}
+
+.paral {
+  min-height: 600px;
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+}
+
+/* Paragraph for Parallax Section */
+.paral p {
+  font-size: 2rem;
+  color: #f5f5f5;
+  text-align: center;
+  /* line-height: 60px; */
+}
+
+/*Heading for Parallax Section */
+
+.paral h1 {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 120px;
+  text-align: center;
+  /*padding-top: 20px; */
+  line-height: 1.2;  
+}
+
+/* Images for Parallax Section */
+
+
+
+.paralsec {
+  /* background-image: url("../images/new_parallax_img/new_para.jpg"); */
+  background-attachment: fixed;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+
+}
+
+.paralsec1 {
+  background-image: url("../images/new_parallax_img/new_para1.jpg");
+  background-attachment: fixed;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+}
+
+.paralsec2 {
+  background-image: url("../images/new_parallax_img/new_para2.jpg");
+  background-attachment: fixed;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+}
+
+.shuffle {
+  background: none;
+}
+
+/* Remove Bottom Margin from Jumbotron */
+
+.jumbotron{margin-bottom: 0;}
+
+
+ /* Extra small devices (phones, 600px and down) */
+ @media only screen and (max-width: 600px) {
+  .paralsec {
+    background-attachment: scroll;
+    background-size: contain;
+  }
+
+  .paralsec1 {
+    background-attachment: scroll;
+    background-size: contain;
+  }
+
+  .paralsec2 {
+    background-attachment: scroll;
+    background-size: contain;
+  }
+
+  .paral h1 {
+    font-size: 60px;
+  }
+  
+  .paral p {
+    font-size: 20px;
+  }
+ }
+
+ /* Small devices (portrait tablets and large phones, 600px and up) */
+ @media only screen and (min-width: 600px) {
+  .paralsec {
+    background-attachment: fixed;
+  }
+  .paralsec1 {
+    background-attachment: fixed;
+  }
+
+  .paralsec2 {
+    background-attachment: fixed;
+  }
+ }
+ 
+ 
+ 

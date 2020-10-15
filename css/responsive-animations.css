@@ -1,0 +1,38 @@
+.responsive {
+    font-size: 8px;
+    width: 32em;
+    height: 32em;
+    
+}
+
+/* Media quereis for larger screen sizes */
+
+@media (min-width: 350px) {
+    .responsive {
+        font-size: 5px;
+    }
+}
+
+@media (min-width: 410px) {
+    .responsive {
+        font-size: 6.5px;
+    }
+}
+
+@media (min-width: 700px) {
+    .responsive {
+        font-size: 11px;
+    }
+}
+
+@media (min-width: 1000px) {
+    .responsive {
+        font-size: 14.5px;
+    }
+}
+
+@media (min-height: 1200px) {
+    .responsive {
+        font-size: 19px;
+    }
+}

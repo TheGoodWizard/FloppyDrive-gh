@@ -1,0 +1,10 @@
+/* Styles for hightlighting the hovered options */
+
+.option .more-info {
+    visibility: hidden;
+}
+
+.option .call-to-action {
+    transform: scale(.2);
+    visibility: hidden;
+}

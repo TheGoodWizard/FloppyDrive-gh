@@ -1,0 +1,25 @@
+{
+  "name": "floppydrive",
+  "version": "1.0.0",
+  "description": "",
+  "main": "toggle-backup-code.js",
+  "dependencies": {
+    "animate.css": "^3.7.2",
+    "animejs": "^3.2.0",
+    "bootstrap": "^4.4.1",
+    "jquery": "^3.5.0",
+    "normalize.css": "^8.0.1",
+    "popper.js": "^1.16.1",
+    "webpack": "^4.42.1"
+  },
+  "devDependencies": {
+    "parcel-bundler": "^1.12.4",
+    "sass": "^1.26.3"
+  },
+  "scripts": {
+    "start": "parcel ./src/index.html",
+    "build": "parcel build ./src/index.html"
+  },
+  "author": "Joe Summers",
+  "license": "ISC"
+}
